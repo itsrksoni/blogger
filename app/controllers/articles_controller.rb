@@ -15,7 +15,10 @@ class ArticlesController < ApplicationController
 
     def create
         
-            @article = Article.new( params.require(:article).permit(:title, :body))
+            @article = Article.new( (params.require(:article).permit(:title, :body, :tags)).except(:tags))
+             create_or_delete_article_tags(@article,params[:article][:tags])
+
+
            if 
                 @article.save
                 redirect_to @article
@@ -32,7 +35,7 @@ class ArticlesController < ApplicationController
 
     def update
         @article= Article.find(params[:id])
-        @article.update(params.require(:article).permit(:title, :body))
+        @article.update(params.require(:article).permit(:title, :body, :tags))
         redirect_to articles_path
 
     end
@@ -45,4 +48,14 @@ class ArticlesController < ApplicationController
     
     end
 
+end
+
+private
+
+def create_or_delete_article_tags(article,tags)
+   # article.taggings.destroy_all
+    @tags = tags.strip.split(',')
+    @tags.each do |tag|
+        article.tags << Tag.find_or_create_by(name: tag)
+    end
 end
