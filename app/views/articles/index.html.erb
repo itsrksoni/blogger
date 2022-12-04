@@ -1,0 +1,15 @@
+
+<% @article.each do |t| %>
+<h5>Title :</h5>
+<%=link_to t.title, article_path(t), class: 'article_title' %> <br/>
+<h5>Body :</h5>
+<%=t.body%> <br/>
+
+<%= link_to "Edit",edit_article_path(t.id)  %> <br/>
+
+<%= link_to 'Delete' , articles_delete_path(t.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+
+<%end%> <br/> <br/>
+
+<%=link_to "Create a new Article", new_article_path, class: "new_article" %>
+
