@@ -1,11 +1,2 @@
-<div>
-    <h2>Article Edit Form</h2><br/>
-
-    <%= form_with(model: @article) do |f| %> 
-        <%= f.label :title %>
-        <%= f.text_field :title %> <br/>
-        <%= f.label :Body %>
-        <%= f.text_area :body, size: "60x10" %> <br/>
-        <%= f.submit %> <br/>
-    <% end %>
-<div>
+<h2>Article Edit Form</h2><br/>
+<%= render 'form'%>

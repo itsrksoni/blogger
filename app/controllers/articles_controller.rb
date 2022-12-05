@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
+before_action :set_article, only: [:show, :edit, :update, :destroy]
+
     def index
         @article= Article.all
     end
 
     def show
-        @article= Article.find(params[:id])
         
     end
     
@@ -15,12 +16,9 @@ class ArticlesController < ApplicationController
 
     def create
         
-            @article = Article.new( (params.require(:article).permit(:title, :body, :tags)).except(:tags))
-             create_or_delete_article_tags(@article,params[:article][:tags])
-
-
-           if 
-                @article.save
+            @article = Article.new(articles_params)
+           
+           if   @article.save
                 redirect_to @article
            else 
                 render "new" , status: :unprocessable_entity
@@ -29,33 +27,33 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
-
+       
     end
 
     def update
-        @article= Article.find(params[:id])
-        @article.update(params.require(:article).permit(:title, :body, :tags))
+       
+        @article.update(articles_params)
         redirect_to articles_path
 
     end
 
     def destroy
 
-        @article= Article.find(params[:id])
         @article.destroy
         redirect_to articles_path
     
     end
 
-end
+
 
 private
 
-def create_or_delete_article_tags(article,tags)
-   # article.taggings.destroy_all
-    @tags = tags.strip.split(',')
-    @tags.each do |tag|
-        article.tags << Tag.find_or_create_by(name: tag)
+    def set_article
+        @article= Article.find(params[:id])
     end
+    def articles_params
+        params.require(:article).permit(:title, :body, :tag_list)
+
+    end
+
 end
