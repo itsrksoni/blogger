@@ -1,0 +1,11 @@
+<div>
+    <%= form_with(model: @article) do |f| %> 
+        <%= f.label :title %>
+        <%= f.text_field :title %> <br/>
+        <%= f.label :Body %>
+        <%= f.text_area :body %> <br/> <br/>
+        <%= f.label :tag_list %><br />
+        <%= f.text_field :tag_list,  placeholder: "Separated by Comma (,)"%>
+        <%= f.submit %> <br/>
+    <% end %>
+</div>
