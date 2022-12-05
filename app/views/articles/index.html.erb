@@ -1,18 +1,28 @@
-<div>
-    <% @article.each do |t| %>
+<h2> List of All Articles </h2>
+<%= link_to '<< homepage', root_path %> <br/> <br/>
 
-        <h5>Title :</h5>
-        <%= t.title %> 
-        <h5>Body :</h5>
-        <%=t.body%> <br/>
-        <%= link_to "Show", article_path(t.id)%> <br/>
-        <%= link_to "Edit",edit_article_path(t.id)  %> <br/>
-        <%= link_to 'Delete' , articles_delete_path(t.id),
-        method: :delete,
-        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> <br/>
-    <%end%>
+<table>
+    <thead>
+        <tr>
 
+            <th>Title</th>
+            <th>Body</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @article.each do |t| %>
+        <tr>
+            <td><%= t.title %></td>
+            <td><%= t.body %></td>
+            <td><%= link_to 'Show', article_path(t.id) %></td>
+            <td><%= link_to 'Delete' , articles_delete_path(t.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_article_path(t) %></td>
+           
 
-        <%=link_to "Create a new Article", new_article_path, class: "new_article" %>
+        </tr>
+      <% end %>
+    </tbody>
+    <td><%= link_to 'Create Article', new_article_path %></td>
 
-</div>
+</table>
