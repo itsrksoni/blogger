@@ -17,11 +17,13 @@ before_action :set_article, only: [:show, :edit, :update, :destroy]
     def create
         
             @article = Article.new(articles_params)
-           
+
            if   @article.save
                 redirect_to @article
            else 
-                render "new" , status: :unprocessable_entity
+            
+                 @article.errors.full_messages
+                render "new", status: :unprocessable_entity
            end
       
     end
@@ -32,8 +34,11 @@ before_action :set_article, only: [:show, :edit, :update, :destroy]
 
     def update
        
-        @article.update(articles_params)
-        redirect_to articles_path
+       if  @article.update(articles_params)
+           redirect_to articles_path
+       else
+            render 'edit', status: :unprocessable_entity
+       end
 
     end
 
