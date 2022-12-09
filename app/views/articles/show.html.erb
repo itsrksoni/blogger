@@ -5,6 +5,12 @@
     <h3>Body :</h3>
         <%= @article.body %> <br/><br/>
         <%= link_to "Delete", articles_delete_path(@article.id),method: :delete %> <br/>
+        <p>
+        Tags:
+        <% @article.tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag.id) %>
+        <% end %>
+        </p>    
 
     <h3>Comments (<%= @article.comments.size %>) </h3>
 

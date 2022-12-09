@@ -6,6 +6,8 @@
         <%= f.text_field :title %> <br/>
         <%= f.label :Body %>
         <%= f.text_area :body, size: "60x10" %> <br/>
+        <%= f.label :tags %><br />
+        <%= f.text_field :tags, value: @article.tags.map(&:name).join(",") %>
         <%= f.submit %> <br/>
     <% end %>
 <div>
