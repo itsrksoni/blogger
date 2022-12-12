@@ -17,27 +17,32 @@
         <%=link_to "Create a new Article", new_article_path, class: "new_article" %>
 
 </div> -->
-
-<table>
+<div class="container" style="margin-top:7px;">
+<button type="button" class="btn btn-primary">
+  Articles Listing <span class="badge badge-light" style="color:red"><%= @article.size%></span>
+</button>
+</div>
+<div class= "container-fluid" style="background-color: #e3f2fd;">
+<table class="table" >
   <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Show</th>
-     <th>Edit</th>
-    <th>Delete</th>
+    <th scope="col">Title</th>
+    <th>Short Note</th>
+
   </tr>
   <% @article.each do |t| %>
   <tr >
     <td><%= t.title %> </td>
-    <td><%=t.body%></td>
-    <td><%= link_to "Show", article_path(t.id)%> </td>
-    <td><%= link_to "Edit",edit_article_path(t.id)  %></td>
-    <td><%= link_to 'Delete' , articles_delete_path(t.id),
+    <td><%=t.note%></td>
+    <td class="btn btn-info"><%= link_to "Show", article_path(t.id), :class => "btn"%> </td>
+    <td class="btn btn-primary"><%= link_to "Edit",edit_article_path(t.id), :class => "btn" %></td>
+    <td class="btn btn-danger"><%= link_to "Delete", articles_delete_path(t.id),
         method: :delete,
-        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } ,:class => "btn"%>
     </td>
   </tr>
   <%end%>
   </table>
-
-   <%=link_to "Create a new Article", new_article_path, class: "new_article" %>
+ </div>
+ <p class="btn btn-success">
+   <%= link_to "Create a new Article", new_article_path, class: "new_article",:class => "btn" %>
+</p>

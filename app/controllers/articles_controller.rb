@@ -16,12 +16,13 @@ class ArticlesController < ApplicationController
 
     def create
         
-            @article = Article.new (params.require(:article).permit(:title, :body, :tag_list))#.except(:tags))
+            @article = Article.new (params.require(:article).permit(:title, :body, :note, :tag_list))#.except(:tags))
             # create_or_delete_article_tags(@article,params[:article][:tags])
 
 
            if @article.save
-                redirect_to @article
+            
+                redirect_to articles_path
            else 
                 render "new" , status: :unprocessable_entity
            end
@@ -35,7 +36,7 @@ class ArticlesController < ApplicationController
 
     def update
         @article= Article.find(params[:id])
-        @article.update(params.require(:article).permit(:title, :body, :tag_list))
+        @article.update(params.require(:article).permit(:title, :body, :note, :tag_list,))
         redirect_to articles_path
 
     end

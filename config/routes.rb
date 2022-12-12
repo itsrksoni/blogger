@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+    root 'articles#index'
+
     resources :articles, except: [:destroy] do
         resources :comments#, only: [:create]
     end

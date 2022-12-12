@@ -1,8 +1,8 @@
 class Article < ApplicationRecord
     has_many :comments, dependent: :destroy
-    has_many :taggings
+    has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
-    attr_accessor :tag_list
+   
 
 
     def tag_list
@@ -14,8 +14,16 @@ class Article < ApplicationRecord
         tag_names = tags_string.split(",").collect{|s| s.strip.downcase}.uniq
         new_or_found_tags = tag_names.collect { |name| Tag.find_or_create_by(name: name) }
         self.tags = new_or_found_tags
-
     end
-      
+    
+    def next
+        if self == Article.last
+            self
+        else
+            b = self.id
+        Article.find(b+1)
+            end
+       
+    end
     
 end

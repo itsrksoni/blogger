@@ -4,10 +4,12 @@
     <%= form_with(model: @article) do |f| %> 
         <%= f.label :title %>
         <%= f.text_field :title %> <br/>
+        <%= f.label :note %>
+        <%= f.text_field :note %> <br/>
         <%= f.label :Body %>
         <%= f.text_area :body, size: "60x10" %> <br/>
-        <%= f.label :tags %><br />
-        <%= f.text_field :tags, value: @article.tags.map(&:name).join(",") %>
+        <%= f.label :Tag %>
+        <%= f.text_field :tag_list %><br /><br />
         <%= f.submit %> <br/>
     <% end %>
 <div>

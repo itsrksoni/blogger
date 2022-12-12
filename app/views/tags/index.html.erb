@@ -1,5 +1,11 @@
-<% @tags.each do |t|%>
 
-<%= t.name%> <br/>
-
-<% end %>
+<table style="width:100%">
+  <tr>
+    <th>Tag Names</th>
+  </tr>
+  <tr>
+    <% @tags.each do |t|%>
+    <td><%= link_to "#{t.name.upcase}",tag_path(t.id) %></td>
+  </tr>
+    <% end %>
+</table>
