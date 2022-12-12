@@ -1,14 +1,29 @@
 <div>
     <h3>Title : </h3>
         <%= @article.title%> <br/>
+     <h3>Short Note : </h3>
+        <%= @article.note%> <br/>
 
-    <h3>Body :</h3>
+
+    <h3>Content :</h3>
         <%= @article.body %> <br/><br/>
-        <%= link_to "Delete", articles_delete_path(@article.id),method: :delete %> <br/>
+    <div class="">
+        <button class="btn btn-outline-primary" type="button"><%= link_to "Next",article_path(@article.next) %></button>
+        <button class="btn btn-outline-danger" ><%= link_to "Delete", articles_delete_path(@article.id),method: :delete %> <br/></button>
+        <button class="btn btn-outline-warning" type="button"><%= link_to "Edit", edit_article_path(@article.id) %></button>
+    </div>
 
-    <h3>Comments</h3>
+        
+        <p>
+        Tags:
+        <% @article.tags.each do |tag| %>
+        <%= link_to tag.name.upcase, tag_path(tag.id) %>
+        <% end %>
+        </p>    
 
-        <%= render partial: 'articles/comment', collection: @article.comments %>
+    <h3>Comments (<%= @article.comments.size %>) </h3>
+
+        <%= render partial: 'comments/comment', collection: @article.comments %>
         <%= render partial: 'comments/form', locals: {article: @article } %>
 
     <%= link_to "<< Back to Articles List" , articles_path %> <br/>

@@ -1,0 +1,28 @@
+<h1>Comments Associated with <%= @tag.name %></h1>
+<!--
+<ul>
+  <% @tag.articles.each do |article| %>
+    <li><% link_to "Article : #{article.title}", article_path(article) %></li>
+        <% article.comments.each do |c| %>
+        <%= "Comments:  #{c.body}" %> <br/>
+        <%end%> <br/>
+
+  <% end %>
+</ul>
+-->
+
+<table>
+  <tr>
+    <th>Comment</th>
+    <th>Article name</th>
+    
+  </tr>
+  <tr>
+  <% @tag.comments.each do |c| %>
+  <td><%= c.body%></td>
+  <td><%=c.article.title%></td>
+  </tr>
+  <% end %>
+
+
+</table>
