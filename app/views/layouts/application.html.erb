@@ -48,6 +48,8 @@
     <p class="alert"><%= alert %></p>
 
       <div>
+      <%= notice if notice%>
+      <%= alert if alert %>
       <%= yield %>
       </div>
 
