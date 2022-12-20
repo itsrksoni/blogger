@@ -1,22 +1,23 @@
 class ArticlesController < ApplicationController
+    before_action :authenticate_user!, except: [:index,:show]
     def index
         @article= Article.all
     end
 
     def show
-        @article= Article.find(params[:id])
+        @article = Article.find(params[:id])
        
         
     end
     
     def new
-       @article=Article.new
+       @article = current_user.articles.build
 
     end
 
     def create
         
-            @article = Article.new (params.require(:article).permit(:title, :body, :note, :tag_list))#.except(:tags))
+            @article = current_user.articles.build(params.require(:article).permit(:title, :body, :note, :tag_list))#.except(:tags))
             # create_or_delete_article_tags(@article,params[:article][:tags])
 
 
