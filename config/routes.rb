@@ -9,8 +9,13 @@ Rails.application.routes.draw do
     delete 'articles/:id/delete' => 'articles#destroy', as: 'articles_delete'
     get '/articles/:id/delete' => 'articles#destroy'
 
-resources :tags
+    resources :tags
 
-devise_for :users
+    devise_for :users, controllers: {
+        registrations: 'users/registrations'
+    }
+
+
+    get 'users/:id' => 'users#show', as: 'users_show'
 
 end

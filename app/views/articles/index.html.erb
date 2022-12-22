@@ -17,18 +17,21 @@
         <%=link_to "Create a new Article", new_article_path, class: "new_article" %>
 
 </div> -->
-<div align="right">
-<% if current_user %>
-<%= button_to(
-        "Log Out",
-        destroy_user_session_path,
-        method: :delete
-      ) %>
+      <div align="right">
+      <ul class="nav justify-content-end">
+      <% if current_user %>
+      
+      <li class="nav-item"><%= link_to "Profile", users_show_path(current_user)%> <br/></li>
       <% else %>
+      <li class="nav-item"> 
       <%= link_to "Sign Up", new_user_registration_path %>
+      </li>
+      <li class="nav-item">
       <%= link_to "Sign In", new_user_session_path %>
+      </li>
 
 <% end %>
+</ul>
 </div>
 
 <div class="container">
