@@ -11,16 +11,23 @@
 </ul>
 -->
 
-<table>
+<table class="table">
   <tr>
-    <th>Comment</th>
-    <th>Article name</th>
+    <th>Title</th>
+    <th>Note</th>
     
   </tr>
-  <tr>
-  <% @tag.comments.each do |c| %>
+ 
+  <!--<% @tag.comments.each do |c| %> for showing comments related to tags and all associated articles with comments
   <td><%= c.body%></td>
   <td><%=c.article.title%></td>
+  </tr>
+  <% end %>
+  -->
+   <tr>
+   <% @tag.articles.each do |c| %>
+   <td><%= c.title%></td>
+  <td><%=c.note%></td>
   </tr>
   <% end %>
 

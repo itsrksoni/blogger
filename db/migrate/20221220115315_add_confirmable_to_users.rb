@@ -8,3 +8,6 @@ class AddConfirmableToUsers < ActiveRecord::Migration[7.0]
     add_index :users, :unlock_token, unique: true
   end
 end
+
+
+# http://localhost:3000/users/confirmation?confirmation_token=Pmhap9q-ubmydSW2gcvd

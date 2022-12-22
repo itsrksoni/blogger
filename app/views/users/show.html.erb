@@ -1,16 +1,35 @@
 
 <% if current_user %>
-<h2>Hello <%= @user.name %> </h2>
-<h5>Username : <%= @user.username %> </h5>
-<h5>Email :  <%= @user.email %> </h5>
-<h5><%= @user.name %> </h5>
+<h2>Hello <%= current_user.name %> ,</h2>
 
-<li class="nav-item"><%= button_to(
+<% if current_user.image.attached? %>
+<%= image_tag current_user.image.variant(resize_to_limit: [100, 100]) %>
+
+<!--<%= image_tag(current_user.image, style: "display:
+      inline-block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;") 
+%>
+-->
+<%end%> 
+<button type="button" class="btn btn-outline-success "><%=link_to "Edit", edit_user_registration_path(current_user.id) %> </button>
+      <table class="table" style="width:100%">
+      <tr>
+      <th>Name:</th>
+      <td><%= current_user.name %></td>
+      </tr>
+      <tr>
+      <th>Email:</th>
+      <td><%= current_user.email %></td>
+      </tr>
+      </table>
+
+<%= button_to(
               "Log Out",
         destroy_user_session_path,
         method: :delete
-      ) %> </li>
+      ) %> 
 
-      <%=link_to "Edit", edit_user_registration_path(@user.id) %> 
 <% end %>
       

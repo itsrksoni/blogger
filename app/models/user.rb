@@ -8,8 +8,13 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :articles
+  has_one_attached :image
 
   
 
 
 end
+
+
+
+  #http://localhost:3000/users/confirmation?confirmation_token=Pmhap9q-ubmydSW2gcvd

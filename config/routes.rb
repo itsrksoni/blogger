@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     }
 
 
-    get 'users/:id' => 'users#show', as: 'users_show'
+    get 'my_profile' => 'users#show', as: 'users_show'
 
 end

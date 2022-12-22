@@ -72,4 +72,8 @@ group :test do
   gem "webdrivers"
 end
 
+# devise gem for user login and signup
 gem 'devise', '~> 4.8', '>= 4.8.1'
+
+# gem for image processing using imagemagick
+gem 'image_processing', '~> 1.2'

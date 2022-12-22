@@ -16,7 +16,7 @@
 
         <%=link_to "Create a new Article", new_article_path, class: "new_article" %>
 
-</div> -->
+</div> 
       <div align="right">
       <ul class="nav justify-content-end">
       <% if current_user %>
@@ -33,6 +33,7 @@
 <% end %>
 </ul>
 </div>
+-->
 
 <div class="container">
 <button type="button" class="btn btn-primary">
@@ -62,6 +63,8 @@
   <%end%>
   </table>
  </div>
+ <% if current_user %>
  <p class="btn btn-success">
    <%= link_to "Create a new Article", new_article_path, class: "new_article",:class => "btn" %>
 </p>
+<% end %>

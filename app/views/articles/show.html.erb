@@ -8,16 +8,18 @@
     <h3>Content :</h3>
         <%= @article.body %> <br/><br/>
     <div class="">
-        <button class="btn btn-outline-primary" type="button"><%= link_to "Next",article_path(@article.next) %></button>
-        <button class="btn btn-outline-danger" ><%= link_to "Delete", articles_delete_path(@article.id),method: :delete %> <br/></button>
-        <button class="btn btn-outline-warning" type="button"><%= link_to "Edit", edit_article_path(@article.id) %></button>
+        <button class="btn btn-primary" type="button"><%= link_to "Next >>",article_path(@article.next), :class => "btn" %></button>
+        <% if current_user %>
+        <button class="btn btn-outline-danger" ><%= link_to "Delete", articles_delete_path(@article.id),method: :delete, :class => "btn" %> <br/></button>
+        <button class="btn btn-outline-warning" type="button"><%= link_to "Edit", edit_article_path(@article.id), :class => "btn" %></button>
+        <% end %>
     </div>
 
         
         <p>
         Tags:
         <% @article.tags.each do |tag| %>
-        <%= link_to tag.name.upcase, tag_path(tag.id) %>
+       <button class="badge bg-outline-dark" ><%= link_to tag.name.upcase, tag_path(tag.id), :class => "btn"%> </button>
         <% end %>
         </p>    
 
@@ -26,6 +28,6 @@
         <%= render partial: 'comments/comment', collection: @article.comments %>
         <%= render partial: 'comments/form', locals: {article: @article } %>
 
-    <%= link_to "<< Back to Articles List" , articles_path %> <br/>
+    <%= link_to "<< Back to Articles List" , articles_path, :class => "btn" %> <br/>
 
 </div>
